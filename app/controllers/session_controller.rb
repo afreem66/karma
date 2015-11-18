@@ -5,7 +5,7 @@ class SessionController < ApplicationController
 
     if user && user.authenticateIuser_params[:password]
       session[:current_user_id] = user_id
-      redirect_to results
+      redirect_to results_path
     else
       flash[:message]  = "Email / Password combo does not exist"
       redirect_to root_path

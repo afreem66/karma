@@ -9,7 +9,7 @@ def create
     flash[:message] = "not loged in, give it another shot"
   end
 
-  redirect_to results
+  redirect_to results_path
 
 end
 
