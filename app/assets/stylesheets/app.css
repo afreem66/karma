@@ -28,6 +28,31 @@ h2 {
   color: #f1f1f1;
 }
 
+.button {
+  /*position: absolute;*/
+  top: 45%;
+  font-size: 1.5rem;
+  display: inline-block;
+  height: 3rem;
+  width: 8.6rem;
+  margin-top: 12rem;;
+}
+
+#log-in {
+  background: lightgray;
+}
+
+#sign-up {
+  border: 1px solid #f1f1f1;
+}
+
+a {
+  text-decoration: none;
+  color: #f1f1f1;
+  margin-top: 1rem;
+  line-height: 3rem;
+}
+
 body {
   background-image: url(https://www.pixoto.com/images-photography/city--street-and-park-/street-scenes/looking-down-a-long-alleyway--6412521220079616.jpg);
   background-size: cover;
@@ -35,7 +60,22 @@ body {
   font-family: 'Muli', sans-serif;
   font-size: 18px;
 }
+.user input {
 
+  background: transparent;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid #f1f1f1;
+  display: inline-block;
+  height: 4rem;
+  width: 25%;
+  font-size: 3rem;
+  text-align: center;
+  color: #f1f1f1;
+}
+placeholder {
+  color: #f1f1f1;
+}
 .find {
   margin: 0 auto;
   padding: 0.4rem;
