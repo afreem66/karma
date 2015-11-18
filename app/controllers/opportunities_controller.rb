@@ -1,12 +1,12 @@
 class OpportunitiesController < ApplicationController
 
-  account_name  = ENV["KARMA_ACCOUNT_NAME"]
-  api_key = ENV["KARMA_ACCOUNT_KEY"]
+  $account_name  = ENV["KARMA_ACCOUNT_NAME"]
+  $api_key = ENV["KARMA_ACCOUNT_KEY"]
 
   def find
     @location = opportunity_params[:postCode]
 
-    api = VolunteerMatchApi.new(account_name, api_key)
+    api = VolunteerMatchApi.new($account_name, $api_key)
     response = api.search_opportunities(@location) # JSON {"name":"VolunteerMatch","result":"Hello VolunteerMatch!"}
     puts response.to_s
     fail
@@ -57,6 +57,6 @@ class VolunteerMatchApi
 
 end
 
-api = VolunteerMatchApi.new(account_name, api_key)
+api = VolunteerMatchApi.new($account_name, $api_key)
 response = api.search_opportunities("10011") # JSON {"name":"VolunteerMatch","result":"Hello VolunteerMatch!"}
 puts response.name.to_s
