@@ -51,4 +51,4 @@ end
 
 api = VolunteerMatchApi.new(account_name, api_key)
 response = api.search_opportunities("10011") # JSON {"name":"VolunteerMatch","result":"Hello VolunteerMatch!"}
-puts response
+puts response.name
