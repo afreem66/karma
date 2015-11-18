@@ -9,13 +9,13 @@ def create
     flash[:message] = "not loged in, give it another shot"
   end
 
-  redirect_to users_path
+  redirect_to results
 
 end
 
 private
 def user_params
-  return params.require(:user).permit(:email, :password)
+  return params.require(:user).permit(:name, :password)
 end
 
 end
