@@ -121,12 +121,23 @@ input-placeholder {
   text-align: center;
   color: #f1f1f1;
 }
+.find label {
+  font-size: 2rem;
+}
+.find input[type="submit"] {
+  border: #f1f1f1;
+  color: #f1f1f1;
+  background: transparent;
+  height: 80%;
+  font-size: 2rem;
+}
 
 .find:hover {
   transition: 0.4s;
   opacity: 0.8;
-  width: 40%;
+  width: 35%;
   font-size: 2rem;
+  z-index: -4;
 }
 .results {
   margin: 2% 10%;

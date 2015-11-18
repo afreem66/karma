@@ -1,6 +1,8 @@
-  <form class="find" action="index.html" method="post">
+  <form class="find" action= "<%= results_path %>" method="POST">
+    <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
     <label for="zipcode">Enter a Zipcode</label>
-    <input class="zip" type="number" name="zipcode" value="location">
+    <input class="zip" type="number" name="opportunity[location]" value="location">
+    <input type="submit" value="find">
   </form>
   <!-- <div class="results">
     <ul>
