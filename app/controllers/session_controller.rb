@@ -5,7 +5,7 @@ class SessionController < ApplicationController
 
     if user && user.authenticate(user_params[:password])
       session[:current_user_id] = user.id
-      redirect_to results_path
+      redirect_to find_path
     else
       flash[:message]  = "Email / Password combo does not exist"
       redirect_to root_path
@@ -15,9 +15,9 @@ class SessionController < ApplicationController
   def destroy
     session[:current_user_id] = nil
 
-    redirect_to results
+    redirect_to root_path
   end
-  
+
   private
   def user_params
     return params.require(:user).permit(:name, :password)
