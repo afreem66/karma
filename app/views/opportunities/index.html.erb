@@ -7,9 +7,9 @@
 <div class="results">
   <ul>
     <% @response.each do |opps| %>
-      <%=<li>%>
-
-      <%=</li>%>
+      <li>
+          <h2><%=opps["parentOrg"]["name"]%></h2>
+      </li>
     <% end %>
   </ul>
 </div>

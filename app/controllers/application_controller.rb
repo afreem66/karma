@@ -9,16 +9,16 @@ class ApplicationController < ActionController::Base
     render '/welcome'
   end
 
-  def results
-    render '/results'
-  end
-
   def sign_up
     render '/sign_up'
   end
 
   def log_in
     render '/log_in'
+  end
+
+  def search
+    render '/find'
   end
 
   private

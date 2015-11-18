@@ -11,9 +11,11 @@ class OpportunitiesController < ApplicationController
     puts 'andrew'
     puts response
 
-    fail
-
     redirect_to results_path
+  end
+
+  def results
+    render '/opportunities/index'
   end
 
   private
