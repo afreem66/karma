@@ -53,6 +53,7 @@ a {
 
 body {
   background-image: url(https://www.pixoto.com/images-photography/city--street-and-park-/street-scenes/looking-down-a-long-alleyway--6412521220079616.jpg);
+  background-repeat: no-repeat;
   background-size: cover;
   text-align: center;
   font-family: 'Muli', sans-serif;
