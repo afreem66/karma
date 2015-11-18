@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>KarmaApp</title>
+  <title>karma</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'app', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
+<header>
+  <h2>Hello friend, where would you like to make a difference today?</h2>
+  <div class="logo">
+    KARMA
+  </div>
+</header>
 <body>
 
 <%= yield %>
