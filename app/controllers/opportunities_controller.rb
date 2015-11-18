@@ -1,9 +1,16 @@
 class OpportunitiesController < ApplicationController
 
+  account_name  = ENV["KARMA_ACCOUNT_NAME"]
+  api_key = ENV["KARMA_ACCOUNT_KEY"]
+
   def find
-    @location = opportunity_params
-    redirect_to results_path
+    @location = opportunity_params[:postCode]
+
+    api = VolunteerMatchApi.new(account_name, api_key)
+    response = api.search_opportunities(@location) # JSON {"name":"VolunteerMatch","result":"Hello VolunteerMatch!"}
+    puts response.to_s
     fail
+    redirect_to results_path
   end
 
   private
@@ -13,9 +20,6 @@ class OpportunitiesController < ApplicationController
   end
 
 end
-
-account_name  = ENV["KARMA_ACCOUNT_NAME"]
-api_key = ENV["KARMA_ACCOUNT_KEY"]
 
 class VolunteerMatchApi
 
@@ -31,8 +35,6 @@ class VolunteerMatchApi
       :fieldsToDisplay => ["name", "url", "location", "description", "mission"]
     }.to_json
   end
-
-  protected
 
   def call(action, json_query)
     puts action
