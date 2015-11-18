@@ -4,6 +4,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def welcome
+    render 'users/welcome'
+  end
+
+  def results
     render '/results'
   end
+  
 end
