@@ -7,9 +7,12 @@ class OpportunitiesController < ApplicationController
     @location = opportunity_params[:postCode]
 
     api = VolunteerMatchApi.new($account_name, $api_key)
-    response = api.search_opportunities(@location) # JSON {"name":"VolunteerMatch","result":"Hello VolunteerMatch!"}
-    puts response.to_s
+    response = api.search(@location).opportunities # JSON {"name":"VolunteerMatch","result":"Hello VolunteerMatch!"}
+    puts 'andrew'
+    puts response
+
     fail
+
     redirect_to results_path
   end
 
@@ -28,7 +31,7 @@ class VolunteerMatchApi
     @api_key      = api_key
   end
 
-  def search_opportunities (postCode)
+  def search (postCode)
     call :searchOpportunities,
     { :opportunityTypes => ["public","private"],
       :location => postCode,
@@ -56,7 +59,3 @@ class VolunteerMatchApi
   end
 
 end
-
-api = VolunteerMatchApi.new($account_name, $api_key)
-response = api.search_opportunities("10011") # JSON {"name":"VolunteerMatch","result":"Hello VolunteerMatch!"}
-puts response.name.to_s
