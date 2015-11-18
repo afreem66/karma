@@ -104,10 +104,11 @@ input-placeholder {
 .find {
   margin: 0 auto;
   padding: 0.4rem;
-  width: 25%;
+  width: 35%;
   margin-top: 1rem;
   background: steelblue;
   color: #f1f1f1;
+  font-size: 2rem;
   opacity: 0.2;
 }
 .zip {
@@ -127,6 +128,7 @@ input-placeholder {
 }
 .find input[type="submit"] {
   border: #f1f1f1;
+  outline: none;
   color: #f1f1f1;
   background: transparent;
   height: 80%;
@@ -136,9 +138,6 @@ input-placeholder {
 .find:hover {
   transition: 0.4s;
   opacity: 0.8;
-  width: 35%;
-  font-size: 2rem;
-  z-index: -4;
 }
 .results {
   margin: 2% 10%;

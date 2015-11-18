@@ -1,15 +1,11 @@
 <form class="find" action= "<%= results_path %>" method="POST">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <label for="zipcode">Enter a Zipcode</label>
+  <label for="zipcode">enter a zipcode</label>
   <input class="zip" type="number" name="location[postCode]" >
   <input type="submit" value="find">
 </form>
 <div class="results">
-  <ul>
-    <% @response.each do |opps| %>
-      <li>
-          <h2><%=opps["parentOrg"]["name"]%></h2>
-      </li>
-    <% end %>
-  </ul>
+  <% response.each do |opp| %>
+    <%= opp["parentOrg"]["name"] %>
+  <% end %>
 </div>
