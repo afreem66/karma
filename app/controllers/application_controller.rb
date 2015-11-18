@@ -13,6 +13,14 @@ class ApplicationController < ActionController::Base
     render '/results'
   end
 
+  def sign_up
+    render '/sign_up'
+  end
+
+  def log_in
+    render '/log_in'
+  end
+
   def amiloggedin?
     amiloggedin = !!session[:current_user_id]
   end
