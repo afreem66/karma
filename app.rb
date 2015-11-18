@@ -18,13 +18,19 @@ class VolunteerMatchApi
     @api_key      = api_key
   end
 
-  def hello_world(name)
-    call :searchOpportunities, {:postalCode => name}.to_json
+  def search_opportunities (postCode)
+    call :searchOpportunities,
+    { :opportunityTypes => ["public","private"],
+      :location => postCode,
+      :fieldsToDisplay => ["name", "url", "location", "description", "mission"]
+    }.to_json
   end
 
   protected
 
   def call(action, json_query)
+    puts action
+    puts json_query
     nonce           = Digest::SHA2.hexdigest(rand.to_s)[0, 20]
     creation_time   = Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S%z")
     password_digest = Base64.encode64(Digest::SHA2.digest(nonce + creation_time + @api_key)).chomp
@@ -44,6 +50,5 @@ class VolunteerMatchApi
 end
 
 api = VolunteerMatchApi.new(account_name, api_key)
-response = api.hello_world("Andrew") # JSON {"name":"VolunteerMatch","result":"Hello VolunteerMatch!"}
-puts response.name # "VolunteerMatch"
-puts response.result # "Hello VolunteerMatch!"
+response = api.search_opportunities("10011") # JSON {"name":"VolunteerMatch","result":"Hello VolunteerMatch!"}
+puts response
