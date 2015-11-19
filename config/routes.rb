@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get '/log_in' => 'application#log_in'
   get '/find' => 'application#search'
   post '/find' => 'opportunities#find'
-  get '/results' => 'opportunities#results'
+  get '/results/' => 'opportunities#results'
   #session
   # get '/session' => 'session#current_user'
   post '/session' => 'session#create'

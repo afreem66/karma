@@ -5,7 +5,5 @@
   <input type="submit" value="find">
 </form>
 <div class="results">
-  <% response.each do |opp| %>
-    <%= opp["parentOrg"]["name"] %>
-  <% end %>
+  <%= $opps.to_s %>
 </div>
