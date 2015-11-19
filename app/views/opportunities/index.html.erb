@@ -1,7 +1,7 @@
 <form class="find" action= "<%= results_path %>" method="POST">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <label for="zipcode">enter a zipcode</label>
-  <input class="zip" type="number" name="location[postCode]" >
+  <label>choose a city</label>
+  <input class="city" type="text" name="location[city]" >
   <input type="submit" value="find">
 </form>
 <div class="results">
