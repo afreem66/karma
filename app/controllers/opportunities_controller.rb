@@ -3,11 +3,6 @@ class OpportunitiesController < ApplicationController
   $account_name  = ENV["KARMA_ACCOUNT_NAME"]
   $api_key = ENV["KARMA_ACCOUNT_KEY"]
 
-  def results
-    $opps
-    render results_path
-  end
-
 
   def find
     @location = opportunity_params[:postCode]
@@ -18,6 +13,7 @@ class OpportunitiesController < ApplicationController
   end
 
   def results
+    $opps
     render '/opportunities/index'
   end
 
@@ -62,8 +58,7 @@ class VolunteerMatchApi
 
     res = Net::HTTP.new(url.host, url.port).start { |http| http.request(req) }
     raise "HTTP error code #{res.code}" unless res.code == "200"
-    @results = OpenStruct.new(JSON.parse res.body).to_s
-    # puts @results[:opportunities]
+    @results = OpenStruct.new(JSON.parse res.body)
   end
 
 end
