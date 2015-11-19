@@ -13,17 +13,8 @@ class OpportunitiesController < ApplicationController
     @location = opportunity_params[:postCode]
     api = VolunteerMatchApi.new($account_name, $api_key)
     $opps = api.search(@location) # JSON {"name":"VolunteerMatch","result":"Hello VolunteerMatch!"}
-      # response.each do |opp|
-      #   @opportunities.push(
-      #                         :title => opp.title,
-      #                         :parentOrg => opp.parentOrg,
-      #                         :location => opp.location,
-      #                         :description => opp.description,
-      #                         :url => opp.url
-      #                       )
-      # end
+
     redirect_to results_path
-    # fail
   end
 
   def results
@@ -59,7 +50,6 @@ class VolunteerMatchApi
   def call(action, json_query)
     puts action
     puts json_query
-    # fail
     nonce           = Digest::SHA2.hexdigest(rand.to_s)[0, 20]
     creation_time   = Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S%z")
     password_digest = Base64.encode64(Digest::SHA2.digest(nonce + creation_time + @api_key)).chomp
