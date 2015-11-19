@@ -5,6 +5,18 @@
   <input type="submit" value="find">
 </form>
 <div class="results">
-  <%= $opps[:opportunities][0] %>
-
+  <ul>
+  <% $opps[:opportunities].each do |opp| %>
+    <li>
+      <h4><%=opp["parentOrg"]["name"]%> | <%=opp["location"]["city"]%> | <%= opp["title"] %></h4>
+      <p>
+      <%= opp["plaintextDescription"] %>
+      <%= opp["vmRrl"]%>
+      <p>
+      <form action="results_path" method="POST">
+        <input type="submit" name="name" value="Save Opportunity">
+      </form>
+    </li>
+  <% end %>
+  </ul>
 </div>
