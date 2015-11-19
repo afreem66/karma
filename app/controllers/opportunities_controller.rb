@@ -3,7 +3,6 @@ class OpportunitiesController < ApplicationController
   $account_name  = ENV["KARMA_ACCOUNT_NAME"]
   $api_key = ENV["KARMA_ACCOUNT_KEY"]
 
-
   def find
     @location = opportunity_params[:postCode]
     api = VolunteerMatchApi.new($account_name, $api_key)
