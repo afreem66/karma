@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/find' => 'application#search'
   post '/find' => 'opportunities#find'
   get '/results/' => 'opportunities#results'
+  post '/results/' => 'opportunities#find'
   #session
   # get '/session' => 'session#current_user'
   post '/session' => 'session#create'

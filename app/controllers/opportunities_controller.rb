@@ -4,7 +4,7 @@ class OpportunitiesController < ApplicationController
   $api_key = ENV["KARMA_ACCOUNT_KEY"]
 
   def find
-    @location = opportunity_params[:postCode]
+    @location = opportunity_params[:city]
     api = VolunteerMatchApi.new($account_name, $api_key)
     $opps = api.search(@location) # JSON {"name":"VolunteerMatch","result":"Hello VolunteerMatch!"}
 
@@ -19,7 +19,7 @@ class OpportunitiesController < ApplicationController
   private
 
   def opportunity_params
-    return params.require(:location).permit(:postCode)
+    return params.require(:location).permit(:city)
   end
 
 end
@@ -31,12 +31,10 @@ class VolunteerMatchApi
     @api_key      = api_key
   end
 
-  def search (postCode)
+  def search (city)
     call :searchOpportunities,
     { :opportunityTypes => ["public"],
-      :location => postCode,
-      :fieldsToDisplay => ["title", "parentOrg", "url", "location", "description", "mission"],
-      :nbOfResults => 10,
+      :location => city,
       :sortCritera => "distance",
       :sortOrder => "desc"
     }.to_json
@@ -48,7 +46,7 @@ class VolunteerMatchApi
     nonce           = Digest::SHA2.hexdigest(rand.to_s)[0, 20]
     creation_time   = Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S%z")
     password_digest = Base64.encode64(Digest::SHA2.digest(nonce + creation_time + @api_key)).chomp
-    url             = URI.parse("http://www.volunteermatch.org/api/call?action=#{action.to_s}&query=#{json_query}")
+    url             = URI.parse("https://www.volunteermatch.org/api/call?action=#{action.to_s}&query=#{json_query}")
     req             = Net::HTTP::Get.new(url.request_uri)
     req.add_field('Content-Type', 'application/json')
     req.add_field('Authorization', 'WSSE profile="UsernameToken"')
