@@ -1,11 +1,11 @@
 class OpportunitiesController < ApplicationController
 
-  $account_name  = ENV["KARMA_ACCOUNT_NAME"]
-  $api_key = ENV["KARMA_ACCOUNT_KEY"]
+  $KARMA_ACCOUNT_NAME  = ENV["KARMA_ACCOUNT_NAME"]
+  $KARMA_ACCOUNT_KEY = ENV["KARMA_ACCOUNT_KEY"]
 
   def find
     @location = opportunity_params[:city]
-    api = VolunteerMatchApi.new($account_name, $api_key)
+    api = VolunteerMatchApi.new($KARMA_ACCOUNT_NAME, $KARMA_ACCOUNT_KEY)
     $opps = api.search(@location) # JSON {"name":"VolunteerMatch","result":"Hello VolunteerMatch!"}
 
     redirect_to results_path
@@ -46,7 +46,7 @@ class VolunteerMatchApi
     nonce           = Digest::SHA2.hexdigest(rand.to_s)[0, 20]
     creation_time   = Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S%z")
     password_digest = Base64.encode64(Digest::SHA2.digest(nonce + creation_time + @api_key)).chomp
-    url             = URI.parse("https://www.volunteermatch.org/api/call?action=#{action.to_s}&query=#{json_query}")
+    url             = URI.parse("http://www.volunteermatch.org/api/call?action=#{action.to_s}&query=#{json_query}")
     req             = Net::HTTP::Get.new(url.request_uri)
     req.add_field('Content-Type', 'application/json')
     req.add_field('Authorization', 'WSSE profile="UsernameToken"')
